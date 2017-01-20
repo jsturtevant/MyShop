@@ -4,27 +4,42 @@ networks:
     driver: bridge
 services:
   proxy:
+    build:
+      context: ./Proxy
+      dockerfile: Dockerfile 
     image: shop-proxy:1.0
-    ports: ["80:80"]
+    ports: ["8080:80"]
     networks:
       - myshop
   products:
+    build:
+      context: ./ProductsApi
+      dockerfile: Dockerfile
     image: products-api:1.0
     networks:
       - myshop
   ratings:
+    build:
+      context: ./RatingsApi
+      dockerfile: Dockerfile
     image: ratings-api:1.0
     networks:
       - myshop
   recommandations:
+    build:
+      context: ./RecommandationsApi
+      dockerfile: Dockerfile
     image: recommandations-api:1.0
     networks:
       - myshop
   shop:
+    build:
+      context: ./ShopFront
+      dockerfile: Dockerfile
     image: shop-front:1.0
     networks:
       - myshop
     environment:
-      - SHOP_PRODUCTS_API_URL=http://10.0.75.2/products/
-      - SHOP_RATINGS_API_URL=http://10.0.75.2/ratings/
-      - SHOP_RECOMMANDATIONS_API_URL=http://10.0.75.2/recommandations/
+      - SHOP_PRODUCTS_API_URL=products
+      - SHOP_RATINGS_API_URL=ratings
+      - SHOP_RECOMMANDATIONS_API_URL=recommandations
