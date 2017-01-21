@@ -7,36 +7,36 @@ services:
     build:
       context: ./Proxy
       dockerfile: Dockerfile 
-    image: shop-proxy
-    ports: ["8080:80"]
+    image: shop-proxy:1.0
+    ports: ["80:80"]
     networks:
       - myshop
   products:
     build:
       context: ./ProductsApi
       dockerfile: Dockerfile
-    image: products-api
+    image: products-api:latest
     networks:
       - myshop
   ratings:
     build:
       context: ./RatingsApi
       dockerfile: Dockerfile
-    image: ratings-api
+    image: ratings-api:latest
     networks:
       - myshop
   recommandations:
     build:
       context: ./RecommandationsApi
       dockerfile: Dockerfile
-    image: recommandations-api
+    image: recommandations-api:latest
     networks:
       - myshop
   shop:
     build:
       context: ./ShopFront
       dockerfile: Dockerfile
-    image: shop-front
+    image: shop-front:latest
     networks:
       - myshop
     environment:

@@ -4,24 +4,24 @@ networks:
     driver: overlay
 services:
   proxy:
-    image: mscloudsummit-microsoft.azurecr.io/myshop/proxy:1.0
+    image: linuxpreview-on.azurecr.io/proxy:1.0
     ports: ["80:80"]
     networks:
       - myshop
   products:
-    image: mscloudsummit-microsoft.azurecr.io/myshop/products-api:BuildNumber
+    image: linuxpreview-on.azurecr.io/products-api:BuildNumber
     networks:
       - myshop
   ratings:
-    image: mscloudsummit-microsoft.azurecr.io/myshop/ratings-api:BuildNumber
+    image: linuxpreview-on.azurecr.io/ratings-api:BuildNumber
     networks:
       - myshop
   recommandations:
-    image: mscloudsummit-microsoft.azurecr.io/myshop/recommandations-api:BuildNumber
+    image: linuxpreview-on.azurecr.io/recommandations-api:BuildNumber
     networks:
       - myshop
   shop:
-    image: mscloudsummit-microsoft.azurecr.io/myshop/front:BuildNumber
+    image: linuxpreview-on.azurecr.io/front:BuildNumber
     networks:
       - myshop
     environment:
