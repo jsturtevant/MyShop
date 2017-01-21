@@ -7,7 +7,7 @@ services:
     build:
       context: ./Proxy
       dockerfile: Dockerfile 
-    image: shop-proxy:1.0
+    image: proxy:1.0
     ports: ["80:80"]
     networks:
       - myshop
