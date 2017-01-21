@@ -21,7 +21,7 @@ services:
     networks:
       - myshop
   shop:
-    image: linuxpreview-on.azurecr.io/front:BuildNumber
+    image: linuxpreview-on.azurecr.io/shop-front:BuildNumber
     networks:
       - myshop
     environment:
