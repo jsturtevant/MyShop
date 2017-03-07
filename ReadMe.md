@@ -20,4 +20,4 @@ docker-compose -f src\docker-compose.local.yml down
 This removes all the running docker containers and cleans up the resources according the compose file.
 
 ## Credit
-This is a fork of [jcorioland/MyShop](https://github.com/jcorioland/MyShop) that has modified.
+This is a fork of [jcorioland/MyShop](https://github.com/jcorioland/MyShop) that has been modified.
