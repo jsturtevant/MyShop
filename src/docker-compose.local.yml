@@ -1,7 +1,7 @@
-version: '2'
+version: '3.1'
 networks:
   myshop:
-    driver: bridge
+    driver: overlay
 services:
   proxy:
     build:
@@ -11,6 +11,9 @@ services:
     ports: ["8080:80"]
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   products:
     build:
       context: ./ProductsApi
@@ -18,6 +21,9 @@ services:
     image: products-api
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   ratings:
     build:
       context: ./RatingsApi
@@ -25,6 +31,9 @@ services:
     image: ratings-api
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   recommandations:
     build:
       context: ./RecommandationsApi
@@ -32,6 +41,16 @@ services:
     image: recommandations-api
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+          limits:
+            cpus: '0.25'
+            memory: 512M
+          reservations:
+            cpus: '0.001'
+            memory: 20M
   shop:
     build:
       context: ./ShopFront
@@ -43,3 +62,6 @@ services:
       - SHOP_PRODUCTS_API_URL=products
       - SHOP_RATINGS_API_URL=ratings
       - SHOP_RECOMMANDATIONS_API_URL=recommandations
+    deploy:
+      mode: replicated
+      replicas: 1
