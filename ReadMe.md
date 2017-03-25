@@ -33,7 +33,7 @@ This will deploy the compose file with recommendations service scaled to 3 insta
 To tear down the stack run:
 
 ```cmd
-docker stack services myshop
+docker stack rm myshop
 ```
 
 ## View the services running
