@@ -4,7 +4,7 @@ networks:
     driver: overlay
 services:
   proxy:
-    image: linuxpreview-on.azurecr.io/proxy:1.0
+    image: jsturtevant/proxy:1.0
     ports: ["80:80"]
     networks:
       - myshop
@@ -12,21 +12,21 @@ services:
       mode: replicated
       replicas: 1
   products:
-    image: linuxpreview-on.azurecr.io/products-api:BuildNumber
+    image: jsturtevant/products-api:BuildNumber
     networks:
       - myshop
     deploy:
       mode: replicated
       replicas: 1
   ratings:
-    image: linuxpreview-on.azurecr.io/ratings-api:BuildNumber
+    image: jsturtevant/ratings-api:BuildNumber
     networks:
       - myshop
     deploy:
       mode: replicated
       replicas: 1
   recommandations:
-    image: linuxpreview-on.azurecr.io/recommandations-api:BuildNumber
+    image: jsturtevant/recommandations-api:BuildNumber
     networks:
       - myshop
     deploy:
@@ -40,7 +40,7 @@ services:
             cpus: '0.001'
             memory: 20M
   shop:
-    image: linuxpreview-on.azurecr.io/shop-front:BuildNumber
+    image: jsturtevant/shop-front:BuildNumber
     networks:
       - myshop
     environment:
