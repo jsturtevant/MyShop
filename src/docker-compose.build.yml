@@ -7,7 +7,7 @@ services:
     build:
       context: ./Proxy
       dockerfile: Dockerfile 
-    image: proxy:1.0
+    image: jsturtevant/proxy:1.0
     ports: ["80:80"]
     networks:
       - myshop
@@ -15,28 +15,28 @@ services:
     build:
       context: ./ProductsApi
       dockerfile: Dockerfile
-    image: products-api:latest
+    image: jsturtevant/products-api:latest
     networks:
       - myshop
   ratings:
     build:
       context: ./RatingsApi
       dockerfile: Dockerfile
-    image: ratings-api:latest
+    image: jsturtevant/ratings-api:latest
     networks:
       - myshop
   recommandations:
     build:
       context: ./RecommandationsApi
       dockerfile: Dockerfile
-    image: recommandations-api:latest
+    image: jsturtevant/recommandations-api:latest
     networks:
       - myshop
   shop:
     build:
       context: ./ShopFront
       dockerfile: Dockerfile
-    image: shop-front:latest
+    image: jsturtevant/shop-front:latest
     networks:
       - myshop
     environment:
