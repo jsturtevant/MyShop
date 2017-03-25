@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 networks:
   myshop:
     driver: overlay
@@ -8,18 +8,37 @@ services:
     ports: ["80:80"]
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   products:
     image: linuxpreview-on.azurecr.io/products-api:BuildNumber
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   ratings:
     image: linuxpreview-on.azurecr.io/ratings-api:BuildNumber
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 1
   recommandations:
     image: linuxpreview-on.azurecr.io/recommandations-api:BuildNumber
     networks:
       - myshop
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+          limits:
+            cpus: '0.25'
+            memory: 512M
+          reservations:
+            cpus: '0.001'
+            memory: 20M
   shop:
     image: linuxpreview-on.azurecr.io/shop-front:BuildNumber
     networks:
@@ -28,3 +47,6 @@ services:
       - SHOP_PRODUCTS_API_URL=/products/
       - SHOP_RATINGS_API_URL=/ratings/
       - SHOP_RECOMMANDATIONS_API_URL=/recommandations/
+    deploy:
+      mode: replicated
+      replicas: 1
